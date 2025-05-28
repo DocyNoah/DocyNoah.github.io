@@ -2,7 +2,6 @@
 title: Chirpy Theme Docker Build
 description: VS Code Dev Containers를 활용한 Chirpy 테마 개발 환경 구성 가이드
 author: yohan
-date: 2025-05-02 00:00:00+0900
 categories: [Blogging, Tutorial]
 tags: [jekyll, chirpy, blogging, docker, vscode, tutorial]
 ---

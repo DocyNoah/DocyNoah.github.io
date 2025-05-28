@@ -2,7 +2,6 @@
 title: Chirpy Theme Configuration
 description: Jekyll 블로그의 Chirpy 테마 설정에 대한 가이드
 author: yohan
-date: 2025-05-20 00:00:00+0900
 categories: [Blogging]
 tags: [jekyll, chirpy, blogging]
 ---

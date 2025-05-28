@@ -1,8 +1,7 @@
 ---
 title: Chirpy Theme Structure Guide
-description:  Chirpy 테마의 디렉토리 구조에 대한 가이드. 각 구성 요소의 목적과 구조 설명
+description: Chirpy 테마의 디렉토리 구조에 대한 가이드. 각 구성 요소의 목적과 구조 설명
 author: yohan
-date: 2025-05-01 00:00:00+0900
 categories: [Blogging]
 tags: [jekyll, chirpy, blogging]
 ---
