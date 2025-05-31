@@ -6,28 +6,26 @@ categories: [Blogging, Tutorial]
 tags: [jekyll, chirpy, blogging, docker, vscode, tutorial]
 ---
 
-## 1. Dev Containers (VS Code + Docker 기반 개발 환경)
-
-VS Code의 Dev Containers는 Docker를 이용해 개발 도구와 설정을 격리된 컨테이너 안에 구성할 수 있게 해줍니다.
-로컬 시스템에 Ruby, Node.js, Jekyll 등을 설치하지 않아도 곧바로 개발을 시작할 수 있으며, 환경 충돌 없이 일관된 개발 환경을 제공합니다.
+VS Code의 Dev Containers는 Docker를 활용하여 개발 도구와 설정을 격리된 컨테이너 안에 구성할 수 있는 강력한 도구이다.
+이를 통해 로컬 시스템에 Ruby, Node.js, Jekyll 등을 직접 설치하지 않고도 즉시 개발을 시작할 수 있으며, 환경 충돌 없이 일관된 개발 환경을 구축할 수 있다.
 
 ---
 
-## 2. 사전 설치 항목
-
-Dev Containers를 사용하기 위해서는 다음 도구가 필요합니다.
+## 1. 사전 설치 항목
 
 - Docker
-- Windows/macOS: Docker Desktop
-- Linux: Docker Engine
+  - Windows/macOS: Docker Desktop
+  - Linux: Docker Engine
 - Visual Studio Code
 - VS Code Extension: Dev Containers
 
 ---
 
-## 3. Dev Container 구성 파일: .devcontainer/devcontainer.json
+## 2. Dev Container 구성
 
-이 파일은 Dev Container의 전체 환경을 정의합니다. 주요 항목은 다음과 같습니다.
+위치: `.devcontainer/devcontainer.json`
+
+### 2.1 기본 설정
 
 ```json
 {
@@ -39,64 +37,84 @@ Dev Containers를 사용하기 위해서는 다음 도구가 필요합니다.
 }
 ```
 
-- `image`: Jekyll이 사전 설치된 공식 Docker 이미지입니다.
-- `onCreateCommand`: 컨테이너가 처음 만들어질 때 실행되는 명령입니다. Git 경고 방지를 위해 프로젝트 디렉토리를 안전한 디렉토리로 등록합니다.
-- `postCreateCommand`: 컨테이너 생성 직후 실행되는 셋업 스크립트입니다.
+- `image`: Jekyll이 사전 설치된 공식 Docker 이미지
+- `onCreateCommand`:컨테이너가 처음 만들어질 때 실행되는 명령, Git 경고 방지용 디렉토리 등록
+- `postCreateCommand`: 컨테이너 생성 직후 실행되는 명령
 
----
+### 2.2 VS Code Extension 자동 설치 구성
 
-## 4. VS Code 확장 자동 설치
+```json
+{
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+      "extensions": [
+        "killalau.vscode-liquid-snippets",
+        "Shopify.theme-check-vscode",
+        "timonwong.shellcheck",
+        "mkhl.shfmt",
+        "EditorConfig.EditorConfig",
+        "esbenp.prettier-vscode",
+        "stylelint.vscode-stylelint",
+        "yzhang.markdown-all-in-one",
+        "mhutchie.git-graph"
+      ]
+    }
+  }
+}
+```
 
-devcontainer.json 안에는 다음과 같은 확장 목록이 포함되어 있어 컨테이너 환경에서도 개발 효율을 높여줍니다.
-
-- Liquid 템플릿 자동완성 및 문법 강조:
+- Liquid 템플릿 자동완성 및 문법 강조
   - `killalau.vscode-liquid-snippets`
   - `Shopify.theme-check-vscode`
-- 쉘 스크립트 검사 및 정리 도구:
+- 쉘 스크립트 검사 및 정리 도구
   - `timonwong.shellcheck`
   - `mkhl.shfmt`
-- Common formatter:
+- Common formatter
   - `EditorConfig.EditorConfig`
   - `esbenp.prettier-vscode`
   - `stylelint.vscode-stylelint`
   - `yzhang.markdown-all-in-one`
-- Git:
+- Git
   - `mhutchie.git-graph`
 
 ---
 
-## 5. 초기 설정 스크립트: .devcontainer/post-create.sh
+## 3. 초기 설정 스크립트
 
-컨테이너가 만들어진 후 실행되는 스크립트로, Node.js 환경 구성 및 쉘 설정을 자동화합니다.
+위치: `.devcontainer/post-create.sh`
 
-### 동작 순서
+`postCreateCommand`에 지정된 스크립트로, 컨테이너가 만들어진 후 실행된다.
 
-1. package.json이 존재할 경우:
-   - Node.js LTS 설치 (nvm)
-   - npm install, npm run build 실행
+Node.js 환경 구성 및 쉘 설정을 자동화한다.
 
-2. 쉘 포매터 설치:
+### 3.1 동작 순서
 
+1. Node.js 환경 설정
+   - package.json 존재 시 Node.js LTS 설치
+   - npm install 및 build 실행
+
+2. 쉘 포매터 설치
    ```bash
    curl -sS https://webi.sh/shfmt | sh
    ```
 
-3. oh-my-zsh 플러그인 추가:
-   - zsh-syntax-highlighting
-   - zsh-autosuggestions
-   - git log 실행 시 less 페이지 사용 비활성화
+3. oh-my-zsh 설정
+   - 플러그인 추가: zsh-syntax-highlighting, zsh-autosuggestions
+   - git log 페이저 비활성화
 
-## 6. 실제 사용 흐름
+## 4. 실제 사용 흐름
 
 1. VS Code에서 프로젝트 폴더 열기
-2. 왼쪽 하단 녹색 아이콘 클릭 → `Reopen in Container`
+2. 왼쪽 하단 녹색 `Reopen in Container` 버튼 클릭
    - 또는 Command Palette에서 `Dev Containers: Reopen in Container` 선택
 3. Docker 컨테이너 자동 실행 및 개발환경 설정
-4. 완료 후 터미널에서 Jekyll 서버 실행:
-
-```bash
-bundle exec jekyll serve
-```
+4. 완료 후 터미널에서 Jekyll 서버 실행
+   ```bash
+   bundle exec jekyll serve
+   ```
 
 ---
 
