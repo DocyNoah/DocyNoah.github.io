@@ -1,0 +1,46 @@
+details.details-block {
+  border-radius: 0.25rem;
+  border-left: 0.2rem solid var(--details-block-border-color);
+  box-shadow: var(--language-border-color) 1px 1px 2px 1px; /* Using code block border color variable */
+  margin-bottom: 1rem;
+  padding: 0.6rem 1rem 0.6rem 1.5rem;
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+details.details-block > summary {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: -0.6rem -1rem -0.6rem -1.5rem;
+  font-weight: 600;
+  background-color: var(--details-block-bg);
+  color: var(--details-block-text-color);
+  text-decoration: underline;
+  position: relative;
+  list-style: none; /* Hide default arrow */
+}
+
+details.details-block > summary::-webkit-details-marker {
+  display: none; /* Hide default arrow for IOS */
+}
+
+details.details-block > summary::marker {
+  content: none; /* Hide default arrow */
+}
+
+details.details-block > summary::before {
+  font-family: 'Font Awesome 6 Free', sans-serif;
+  content: '\f105'; /* Unicode for fa-angle-right */
+  margin-right: 0.5rem;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+details.details-block[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+details.details-block[open] > summary {
+  margin-bottom: 0.6rem;
+}
