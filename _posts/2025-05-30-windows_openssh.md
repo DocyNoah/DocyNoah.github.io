@@ -6,7 +6,7 @@ categories: [Dev]
 tags: [ssh, cmd, windows]
 ---
 
-Windows에서 OpenSSH를 설치하고 설정하는 방법을 알아본다.
+사용 OS: Windows 11
 
 ## OpenSSH 설치 확인
 
