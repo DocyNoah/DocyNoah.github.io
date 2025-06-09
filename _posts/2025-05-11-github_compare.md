@@ -19,7 +19,7 @@ GitHub의 Compare 기능 사용 시 다음 항목들 간의 변경사항 비교 
 
 ### 2.1 기본 형식
 
-```bash
+```plaintext
 https://github.com/[username]/[repository]/compare/[base]...[compare]
 ```
 
@@ -33,25 +33,27 @@ https://github.com/[username]/[repository]/compare/[base]...[compare]
 - `...`(점 3개)를 사용하면 두 지점의 차이를 비교
 - `..`(점 2개)를 사용하면 직접적인 변경사항만 비교
 
+[GitHub Docs - three dot and two dot git diff comparisons](https://docs.github.com/ko/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons)
+
 ## 3. 사용 예시
 
 ### 3.1 커밋 해시로 비교
 
 stable-baseline3 v2.1.0에서 v2.2.0 사이의 변경사항 비교
 
-```bash
+```plaintext
 https://github.com/DLR-RM/stable-baselines3/compare/f4ec0f6afa1a23b0e0b746174cd0074471cc0b89...e1eac844afd86e241f2bc1c06a2633e35e7e138e
 ```
 
 ### 3.2 브랜치 간 비교
 
-```bash
+```plaintext
 https://github.com/[username]/[repository]/compare/main...develop
 ```
 
 ### 3.3 태그 간 비교
 
-```bash
+```plaintext
 https://github.com/[username]/[repository]/compare/v1.0.0...v2.0.0
 ```
 
@@ -61,12 +63,12 @@ https://github.com/[username]/[repository]/compare/v1.0.0...v2.0.0
 
 특정 기간의 변경사항 확인 가능
 
-```bash
+```plaintext
 https://github.com/[username]/[repository]/compare/main@{1.month.ago}...main
 ```
 
 ### 4.2 포크된 저장소와 비교하기
 
-```bash
+```plaintext
 https://github.com/[username]/[repository]/compare/main...username:feature
 ```
