@@ -2,5 +2,6 @@
   "commands-show-output": false,
   "blanks-around-fences": false,
   "line-length": false,
-  "no-inline-html": false
+  "no-inline-html": false,
+  "MD024": false
 }
