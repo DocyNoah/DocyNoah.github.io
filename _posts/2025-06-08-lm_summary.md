@@ -218,7 +218,7 @@ math: true
 - 공개 일자: 2024‑02‑22 (ICML 2024 발표), weights 2024‑10‑31 공개
 - 성능/용도: on-device common-sense reasoning, Q&A, 문서 이해 등 모바일 최적화 경량 아키텍처
 - 모델 공개 여부: O
-- Checkpoint 공개 여부: O (Hugging Face에 weight 및 코드 공개)
+- Checkpoint 공개 여부: O
 - 파라미터 수: 125M, 350M, 600M, 1B, 1.5B
 - 특이사항: SwiGLU, grouped-query attention, weight-sharing 등 경량화기술 채택, 125M/350M에서 sanity check 기준 +2.7%/+4.3% 향상
 
@@ -259,7 +259,7 @@ math: true
 - 공개 일자: 2024‑10‑31
 - 성능/용도: Vision‑Language‑Action 모델로 다양한 로봇 플랫폼에서 dexterous task 수행 가능 (빨래 개기, 식사 정리 등)
 - 모델 공개 여부: O
-- Checkpoint 공개 여부: O (GitHub `openpi`)
+- Checkpoint 공개 여부: O
 - 파라미터 수: 약 3B (VLM) + 300M diffusion action 모듈
 - 특이사항: flow-matching 기반 action chunking으로 최대 50Hz real-time 제어, 7개 플랫폼·68개 태스크 mix-training
 
