@@ -21,18 +21,18 @@ reboot
 ### 2. 오디오 MIDI 설정
 
 1. <kbd>오디오 MIDI 설정</kbd> 실행
-2. 좌측 하단 <kbd>+</kbd> 버튼 클릭 → <kbd>다중 출력 기기 생성</kbd>
+2. 좌측 하단 <kbd>+</kbd> 버튼 > <kbd>다중 출력 기기 생성</kbd> 선택
 3. 다중 출력 기기에서 다음 항목 체크:
    - <kbd>MacBook Pro 스피커</kbd> (내장 출력)
    - <kbd>BlackHole 2ch</kbd> (녹화용 가상 오디오 루프백)
 4. 오디오 출력 장치를 <kbd>다중 출력 기기</kbd>로 변경
-   - <kbd>제어 센터</kbd> > <kbd>사운드</kbd> > <kbd>출력</kbd>에서 <kbd>다중 출력 기기</kbd> 선택
-   - 또는 <kbd>시스템 설정</kbd> > <kbd>사운드</kbd> > <kbd>출력</kbd>에서 <kbd>다중 출력 기기</kbd> 선택
+   - <kbd>제어 센터</kbd> > <kbd>사운드</kbd> > <kbd>출력</kbd> > <kbd>다중 출력 기기</kbd> 선택
+   - 또는 <kbd>시스템 설정</kbd> > <kbd>사운드</kbd> > <kbd>출력</kbd> > <kbd>다중 출력 기기</kbd> 선택
 
 ### 3. 화면 녹화 설정
 
 - <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd> 로 화면 녹화 메뉴 열기
-- <kbd>옵션</kbd> 클릭 → <kbd>마이크</kbd> 에서 <kbd>BlackHole 2ch</kbd> 선택
+- <kbd>옵션</kbd> > <kbd>마이크</kbd> > <kbd>BlackHole 2ch</kbd> 선택
 - 화면 녹화 시작
 
 ## 주의사항
