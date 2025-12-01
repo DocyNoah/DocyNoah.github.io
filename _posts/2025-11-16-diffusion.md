@@ -121,7 +121,72 @@ $$
 
 그런데 posterior $p_{\theta}(z \vert x)$를 구할 수 없다면서 $\text{KL}(q_{\phi}(z \vert x) \Vert p_{\theta}(z \vert x))$는 어떻게 구하는 걸까? 여기에서 등장하는 게 ELBO(Evidence Lower BOund)이다.
 
-...
+### Jensen's Inequality 이용 ELBO 유도
+
+Jensen's Inequality을 이용하여 ELBO를 유도하는 방식은 유도 과정이 간단하나 $p(z \vert x)$를 다룰 수 없어 $q(z \vert x)$를 이용하여 근사하는 과정이 담겨있지 않아 VAE에서 이러한 ELBO가 유도된다는 사고의 흐름을 받아들이기 어렵다.
+
+$$
+\begin{align}
+p(x)
+&= \int p(x \vert z) p(z) dz \\
+&= \int p(x \vert z) p(z) \frac{q(z \vert x)}{q(z \vert x)} dz \\
+&= \int q(z \vert x) \frac{p(x \vert z) p(z)}{q(z \vert x)} dz \\
+&= \mathbb{E}_{z \sim q(z \vert x)} \left[ \frac{p(x \vert z) p(z)}{q(z \vert x)} \right] \\
+\end{align}
+$$
+
+여기에서 Jensen's Inequality를 이용하면 다음과 같이 유도할 수 있다.
+
+<details class="details-block" markdown="1">
+<summary>Jensen's Inequality 활용</summary>
+$$
+\mathbb{E}[f(X)] \geq f(\mathbb{E}[X]), \quad f''(x) \geq 0 \quad \forall x
+\quad \Longrightarrow \quad
+\log \mathbb{E}[f(X)] \geq \mathbb{E}[\log f(X)]
+$$
+</details>
+
+$$
+\begin{align}
+\log p(x)
+&= \log \mathbb{E}_{z \sim q(z \vert x)} \left[ \frac{p(x \vert z) p(z)}{q(z \vert x)} \right] \\
+&\geq \mathbb{E}_{z \sim q(z \vert x)} \left[ \log \frac{p(x \vert z) p(z)}{q(z \vert x)} \right] \\
+&= \mathbb{E}_{z \sim q(z \vert x)} \left[ \log p(x \vert z) + \log p(z) - \log q(z \vert x) \right] \\
+&= \mathbb{E}_{z \sim q(z \vert x)} \left[ \log p(x \vert z) \right] + \mathbb{E}_{z \sim q(z \vert x)} \left[ \log p(z) \right] - \mathbb{E}_{z \sim q(z \vert x)} \left[ \log q(z \vert x) \right] \\
+&= \mathbb{E}_{z \sim q(z \vert x)} \left[ \log p(x \vert z) \right] - \text{KL}(q(z \vert x) \Vert p(z)) \\
+\end{align}
+$$
+
+결론은 다음과 괕다.
+
+$$
+\log p(x) \geq \mathbb{E}_{z \sim q(z \vert x)} \left[ \log p(x \vert z) \right] - \text{KL}(q(z \vert x) \Vert p(z))
+$$
+
+### Importance Sampling 이용 ELBO 유도
+
+Importance Sampling를 이용하여 ELBO를 유도하는 방식은 $p(z \vert x)$를 다룰 수 없어 $q(z \vert x)$로 대체하고 이를 근사하는 과정이 담겨있어 VAE의 목적 함수 설계에 대한 사고의 흐름을 따라가기 쉽다.
+
+$$
+\begin{align}
+p(x)
+&= \mathbb{E}_{z \sim q(z \vert x)} \left[ \frac{p(x \vert z) p(z)}{q(z \vert x)} \right] \\
+&= \mathbb{E}_{z \sim q(z \vert x)} \left[ \frac{p(x \vert z) p(z)}{q(z \vert x)} \right] \\
+\end{align}
+$$
+
+### ELBO 요약
+
+여기에서 $\mathbb{E}_{z \sim q(z \vert x)} \left[ \log p(x \vert z) \right] - \text{KL}(q(z \vert x) \Vert p(z))$를 ELBO(Evidence Lower BOund)라고 한다.
+
+따라서 데이터 $x$의 확률 분포 $p_{\theta}(x)$의 log likelihood를 최대화하기 위해 이의 하한인  ELBO를 최대화하는 문제로 바꿀 수 있다.
+
+VAE의 Objective Function은 ELBO의 각 항은 직관적으로 다음과 같이 볼 수 있다.
+
+- $\mathbb{E}_{z \sim q(z \vert x)} \left[ \log p(x \vert z) \right]$: 재구성 항 (Reconstruction Term)
+- $\text{KL}(q(z \vert x) \Vert p(z))$: 잠재 공간 정규화 항 (Regularization Term)
+
+그리하여 재구성 항은 최대화하고 정규화 항은 최소화하여 $\log p(x)$를 최대화할 수 있다.
 
 ### VAE 요약
 
